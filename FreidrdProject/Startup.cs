@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FreidrdProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace FreidrdProject
@@ -55,6 +59,19 @@ namespace FreidrdProject
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            // Render only .js and css files in the "Views" folder.
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Views")),
+                RequestPath = new PathString("/Views"),
+                ContentTypeProvider = new FileExtensionContentTypeProvider(
+                    new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        {".js", "application.javascript" },
+                        {".css", "text/css" }
+                    })
             });
         }
     }
