@@ -16,6 +16,7 @@ namespace FreidrdProject.Controllers
 		{
 			_db = db;
 		}
+
 		[HttpGet("employee")]
 		public IActionResult Index()
 		{
