@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 //import * as $ from 'jQuery';
+//# sourceMappingURL = employee.js.map;
 require("bootstrap-notify");
 var $ = jQuery;
 var Employees = /** @class */ (function () {
@@ -11,6 +12,7 @@ var Employees = /** @class */ (function () {
         this.init();
     }
     Employees.prototype.init = function () {
+        
         var _this = this;
         try {
             this.initTable();
@@ -105,4 +107,3 @@ var Employees = /** @class */ (function () {
 $(document).ready(function () {
     new Employees();
 });
-//# sourceMappingURL=employee.js.map
