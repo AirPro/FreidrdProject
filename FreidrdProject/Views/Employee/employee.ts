@@ -1,6 +1,6 @@
 ﻿//import * as $ from 'jQuery';
-import 'bootstrap-notify';
-let $: any = jQuery;
+//import 'bootstrap-notify';
+//let $: any = jQuery;
 
 class Employees {
 
