@@ -22,6 +22,7 @@ namespace FreidrdProject.Controllers
 			return View("~/Views/Employee/Index.cshtml");
 		}
 
+		
 		[HttpGet("employee/table-data-view")]
 		public async Task<IActionResult> GetAllEmployees()
 		{
@@ -36,6 +37,30 @@ namespace FreidrdProject.Controllers
 				Console.WriteLine(ex.Message);
 				return null;
 			}
+		}
+
+		[HttpGet("employee/add")]
+		public IActionResult AddEmployeeForm()
+		{ try 
+			{ ViewData["Title"] = "Add New Employee"; 
+				ViewData["Employee"] = new Employee(); 
+				return PartialView("~/Views/Employee/_AddForm.cshtml"); 
+			} catch (Exception ex) { 
+				Console.WriteLine(ex.Message); 
+				return null; 
+			} 
+		}
+
+		[HttpPost("employee/save")] 
+		public IActionResult SaveEmployee(Employee employee) 
+		{ try 
+			{ _db.Employees.Add(employee); 
+				_db.SaveChanges(); 
+				return Json(new { success = true, message = "Saved Successfully" }); 
+			} catch (Exception ex) { 
+				Console.WriteLine(ex.Message); 
+				return Json(new { success = false, message = "Error while saving" }); 
+			} 
 		}
 	}
 }
