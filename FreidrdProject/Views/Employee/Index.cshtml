@@ -37,10 +37,12 @@
             </thead>
             <tbody style="text-align:center">
                 @*This is a comment. The data of body will come from a partial view.*@
+                @await Html.PartialAsync("~/Views/Employee/_TableData.cshtml") 
             </tbody>
         </table>
         <div class="employee-form-container" id="employee_form" style="width: 100%; height:100%">
             @*We'll display add new employee form here.*@
+            @await Html.PartialAsync("~/Views/Employee/_AddForm.cshtml") 
         </div>
     </div>
 </div>
